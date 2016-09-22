@@ -27,6 +27,7 @@ import static org.junit.Assert.*;
 public class ComentariosTest {
     
     public ComentariosTest() {
+        
     }
     
     @Before
