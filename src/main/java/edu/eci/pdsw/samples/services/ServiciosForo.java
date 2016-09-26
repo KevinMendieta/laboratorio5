@@ -45,7 +45,7 @@ public abstract class ServiciosForo {
     /**
      * Consulta todas las entradas al foro registradas
      * @return el conjunto de las entradas al foro disponibles
-     * @throws ExcepcionServiciosForos si se presento un error de persistencia
+     * @throws ExcepcionServiciosForos si se presentó un error de persistencia
      */
     public abstract List<EntradaForo> consultarEntradasForo() throws ExcepcionServiciosForos;
 
@@ -55,14 +55,14 @@ public abstract class ServiciosForo {
      * @param id identificador de la entrada al foro
      * @return la entrada al foro
      * @throws ExcepcionServiciosForos si el identificador no corresponde a 
-     * un entrada a foro existente
+     * una entrada de foro existente
      */
     public abstract EntradaForo consultarEntradaForo(int id) throws ExcepcionServiciosForos;
     
 
     /**
-     * REJISTRA una nueva entrada al foro. El identificador de la EntradaForo sera
-     * asignado por el sistema una vez se haya registrado
+     * REGISTRA una nueva entrada al foro. El identificador de la EntradaForo sera
+     * asignado por el sistema una vez se halla registrado
      * @param f la nueva entrada al foro
      * @throws SQLException si f no tiene asociado su  usuario
      */
@@ -71,7 +71,7 @@ public abstract class ServiciosForo {
 
     /**
      * Agrega una respuesta a un foro determinado
-     * @param idforo identificador de la entredaForo a la cual se agregara
+     * @param idforo identificador de la entrada Foro a la cual se agregara
      * la respuesta
      * @param c el comentario a ser agregado
      * @throws ExcepcionServiciosForos si el comentario no tiene asociado un
