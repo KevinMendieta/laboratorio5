@@ -16,6 +16,8 @@
  */
 package edu.eci.pdsw.samples.tests;
 
+import edu.eci.pdsw.samples.services.ExcepcionServiciosForos;
+import edu.eci.pdsw.samples.services.ServiciosForo;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -27,17 +29,28 @@ import static org.junit.Assert.*;
 public class ComentariosTest {
     
     public ComentariosTest() {
-        
+    /*PRUEBAS DE EQUIVALENCIA
+   
+    - El identificador no corresponde al usuario
+    - EL Identificador es  menor a 0*/
     }
-    
+    private ServiciosForo nuevo;
     @Before
     public void setUp() {
+        nuevo = nuevo.getInstance();
     }
     
     @Test
     public void registroPacienteTest(){
-        
+        int id= 1;
+        try{
+        nuevo.consultarEntradaForo(id);
+         fail();
+        }catch(ExcepcionServiciosForos e){
+            assertTrue("No se encuentra Usuario asociado a este id"+id,true);
+        }
+    }
     }
     
     
-}
+
