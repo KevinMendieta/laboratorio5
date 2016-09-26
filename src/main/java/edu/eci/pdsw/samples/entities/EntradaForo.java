@@ -39,8 +39,8 @@ public class EntradaForo {
     private Date fechayHora;
 
     public EntradaForo() {
+        
     }
-    
     
     public EntradaForo(int identificador, Usuario autor, String comentario, String titulo, Date fechayHora) {
         this.identificador = identificador;
@@ -48,7 +48,7 @@ public class EntradaForo {
         this.comentario = comentario;
         this.titulo = titulo;
         this.fechayHora = fechayHora;
-        this.respuestas=new LinkedHashSet<>();        
+        this.respuestas = new LinkedHashSet<>();
     }
 
     public void setIdentificador(int identificador) {
@@ -105,9 +105,4 @@ public class EntradaForo {
     public String toString() {
         return "EntradaForo{" + "identificador=" + identificador + ", autor=" + autor + ", comentario=" + comentario + ", respuestas=" + respuestas + ", titulo=" + titulo + ", fechayHora=" + fechayHora + '}';
     }
-
-    
-    
-    
-    
 }

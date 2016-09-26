@@ -16,6 +16,9 @@
  */
 package edu.eci.pdsw.samples.tests;
 
+import edu.eci.pdsw.samples.entities.EntradaForo;
+import edu.eci.pdsw.samples.services.ExcepcionServiciosForos;
+import edu.eci.pdsw.samples.services.ServiciosForo;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -26,17 +29,29 @@ import static org.junit.Assert.*;
  */
 public class EntradasForoTest {
     
+    /*
+     *Definicion de clases de equivalencia.
+     * CE1 : Que la entrada al foro tenga asociado un usuario Tipo: Correcta.
+     * CE2 : Que la entrada al foro no tenga asociado un usuario Tipo: Incorrecto.
+     */
+    
+    private ServiciosForo sfs;
+    
     public EntradasForoTest() {
     }
     
     @Before
     public void setUp() {
+        sfs = sfs.getInstance();
     }
     
     @Test
-    public void registroPacienteTest(){
-        
+    public void registroEntradaTestCE2(){
+        try{
+         sfs.registrarNuevaEntradaForo(new EntradaForo());
+         fail();
+        }catch(ExcepcionServiciosForos e){
+            assertTrue("No deberia registrar una entrada sin usuario asociado",true);
+        }
     }
-    
-    
 }

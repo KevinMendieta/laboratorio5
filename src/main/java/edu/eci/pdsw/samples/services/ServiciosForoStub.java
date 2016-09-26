@@ -59,10 +59,10 @@ public class ServiciosForoStub extends ServiciosForo{
     @Override
     public void registrarNuevaEntradaForo(EntradaForo f) throws ExcepcionServiciosForos {
         synchronized(this){
-            f.setIdentificador(foroidcount);            
+            f.setIdentificador(foroidcount);
             foroidcount++;
         }
-        foros.put(f.getIdentificador(), f);        
+        foros.put(f.getIdentificador(), f);
     }
 
     @Override
