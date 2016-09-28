@@ -18,39 +18,58 @@ package edu.eci.pdsw.samples.tests;
 
 import edu.eci.pdsw.samples.services.ExcepcionServiciosForos;
 import edu.eci.pdsw.samples.services.ServiciosForo;
+import java.sql.Date;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import edu.eci.pdsw.samples.entities.*;
+import edu.eci.pdsw.samples.services.ServiciosForoStub;
 
 /**
  *
  * @author hcadavid
  */
 public class ComentariosTest {
-    
-    public ComentariosTest() {
-    /*PRUEBAS DE EQUIVALENCIA
+
+    /*public ComentariosTest() {
+         
+    PRUEBAS DE EQUIVALENCIA
    
-    - El identificador no corresponde al usuario
-    - EL Identificador es  menor a 0*/
+    - El identificador no corresponde al usuario TIPO:error
+    - Si el comentario es vacio no deberia agregar TIPO: error
+    - El foro exista TIPO: Correcto
     }
-    private ServiciosForo nuevo;
+    */
+    
     @Before
     public void setUp() {
-        nuevo = nuevo.getInstance();
     }
-    
+     
+     @Test
+     public void registroPacienteTestComentario() throws ExcepcionServiciosForos{
+         ServiciosForoStub foro= new ServiciosForoStub() ;
+         Usuario autor= new Usuario();
+         Comentario ComentarioNuevo = new Comentario(autor,"Comentario Usuario ",java.sql.Date.valueOf("2000-01-01"));
+         foro.agregarRespuestaForo(0, ComentarioNuevo);  
+         assertEquals("El comentario no se agrego",1,foro.consultarEntradaForo(0).getRespuestas().size());
+     } 
+
     @Test
-    public void registroPacienteTest(){
-        int id= 1;
-        try{
-        nuevo.consultarEntradaForo(id);
-         fail();
-        }catch(ExcepcionServiciosForos e){
-            assertTrue("No se encuentra Usuario asociado a este id"+id,true);
-        }
-    }
-    }
+     public void registroPacienteTestVacio() throws ExcepcionServiciosForos{
+         ServiciosForoStub foro= new ServiciosForoStub() ;
+         System.out.println("A");
+         Usuario autor= new Usuario();
+         System.out.println("B");
+         Comentario ComentarioNuevo = new Comentario(autor,"",java.sql.Date.valueOf("2000-01-01"));
+         System.out.println("C");
+         foro.agregarRespuestaForo(1, ComentarioNuevo);  
+         System.out.println("D");
+         assertEquals("El comentario esta vacio",0,foro.consultarEntradaForo(1).getRespuestas().size());
+     }    
+
+
+}
+    
     
     
 
