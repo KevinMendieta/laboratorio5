@@ -35,39 +35,37 @@ public class ComentariosTest {
          
     PRUEBAS DE EQUIVALENCIA
    
-    - El identificador no corresponde al usuario TIPO:error
-    - Si el comentario es vacio no deberia agregar TIPO: error
-    - El foro exista TIPO: Correcto
+    - SI el comentario no tiene asociado un usuario.
+    - El ID asociado no se encuentra
+    
     }
     */
-    
+    private ServiciosForo nuevo;
     @Before
     public void setUp() {
+         nuevo = nuevo.getInstance();
     }
-     
      @Test
-     public void registroPacienteTestComentario() throws ExcepcionServiciosForos{
-         ServiciosForoStub foro= new ServiciosForoStub() ;
-         Usuario autor= new Usuario();
-         Comentario ComentarioNuevo = new Comentario(autor,"Comentario Usuario ",java.sql.Date.valueOf("2000-01-01"));
-         foro.agregarRespuestaForo(0, ComentarioNuevo);  
-         assertEquals("El comentario no se agrego",1,foro.consultarEntradaForo(0).getRespuestas().size());
-     } 
-
-    @Test
-     public void registroPacienteTestVacio() throws ExcepcionServiciosForos{
-         ServiciosForoStub foro= new ServiciosForoStub() ;
-         System.out.println("A");
-         Usuario autor= new Usuario();
-         System.out.println("B");
-         Comentario ComentarioNuevo = new Comentario(autor,"",java.sql.Date.valueOf("2000-01-01"));
-         System.out.println("C");
-         foro.agregarRespuestaForo(1, ComentarioNuevo);  
-         System.out.println("D");
-         assertEquals("El comentario esta vacio",0,foro.consultarEntradaForo(1).getRespuestas().size());
-     }    
-
-
+     public void registroPacineteTestC1(){
+         Comentario com= new Comentario();
+          try{
+         nuevo.agregarRespuestaForo(0, com);
+         fail();
+        }catch(ExcepcionServiciosForos e){
+            assertTrue("el comentario no tiene un usuario asociado",true);
+        }
+    }    
+  /*    @Test
+     public void registroPacineteTestC2(){
+         Usuario us=new Usuario();
+         Comentario com= new Comentario();
+         try{
+         nuevo.consultarEntradaForo(-1);
+         fail();
+        }catch(ExcepcionServiciosForos e){
+            assertTrue("El id asociado no corresponde a ningun usuario que realizo el comentario",true);
+        }
+    } */
 }
     
     
