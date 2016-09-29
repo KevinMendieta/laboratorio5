@@ -17,8 +17,10 @@
 package edu.eci.pdsw.samples.tests;
 
 import edu.eci.pdsw.samples.entities.EntradaForo;
+import edu.eci.pdsw.samples.entities.Usuario;
 import edu.eci.pdsw.samples.services.ExcepcionServiciosForos;
 import edu.eci.pdsw.samples.services.ServiciosForo;
+import java.sql.Date;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -45,7 +47,17 @@ public class EntradasForoTest {
         sfs = sfs.getInstance();
     }
     
-    /*@Test
+    @Test
+    public void registroEntradaTestCE1(){
+        try{
+         Usuario usuario = sfs.consultarUsuario("juan.perez@gmail.com");
+         sfs.registrarNuevaEntradaForo(new EntradaForo(0,usuario,"asd","asd",new Date(java.util.Calendar.getInstance().getTime().getTime())));
+        }catch(ExcepcionServiciosForos e){
+            fail();
+        }
+    }
+    
+    @Test
     public void registroEntradaTestCE2(){
         try{
          sfs.registrarNuevaEntradaForo(new EntradaForo());
@@ -53,5 +65,5 @@ public class EntradasForoTest {
         }catch(ExcepcionServiciosForos e){
             assertTrue("No deberia registrar una entrada sin usuario asociado",true);
         }
-    }*/
+    }
 }
