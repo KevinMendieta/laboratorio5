@@ -7,15 +7,39 @@
         <h:form id="form">
             <p:dataTable id="tablaComentarios" var="comentarios" value="#{registroForoBean.comentariosEntrada}">                
                 <f:facet name="header">
-                    Products
+                    Hi!
                 </f:facet>
-                <p:column headerText="Comentarios">
-                    <h:outputText value="#{comentarios.toString}" />
+                <p:column headerText="Autores">
+                    <h:outputText value="#{comentarios.autor.nombre}" />
+                </p:column>
+                <p:column headerText="Contenidos">
+                    <h:outputText value="#{comentarios.contenido}" />
+                </p:column>
+                <p:column headerText="Fecha">
+                    <h:outputText value="#{comentarios.fechayHora}" />
                 </p:column>
                 <f:facet name="footer">
-                    <p:commandButton update=":form" value="Add to cart" oncomplete="PF('inputQuantityDialog').show()" />
+                    <p:commandButton update=":form" value="Agregar un Comentario" oncomplete="PF('campoEntradaDatos').show()" />
                 </f:facet>
             </p:dataTable>
+            <p:dialog header="Datos" widgetVar="campoEntradaDatos" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="500">
+                <p:outputPanel id="inputQuantity" style="text-align:center;">
+                    <h:outputText value="Complete sus datos porfavor"/>
+                    <h:panelGrid columns="2" cellpadding="1" styleClass="ui-grid">
+                        
+                        <h:outputLabel for="nombre" value="nombre: " />
+                        <h:inputText id="nombre" value="#{registroForoBean.nombreActual}" required="true"/> 
+                        
+                        <h:outputLabel for="email" value="email: " />
+                        <h:inputText id="email" value="#{registroForoBean.emailActual}" required="true"/>
+                        
+                        <h:outputLabel for="contenido" value="contenido: " />
+                        <h:inputText id="contenido" value="#{registroForoBean.contenidoActual}" required="true"/>
+                        
+                    </h:panelGrid>
+                    <p:commandButton update=":form" value="Agregar comentario" actionListener="#{registroForoBean.addRespuesta()}"/>
+                </p:outputPanel>
+            </p:dialog>
         </h:form>
     </h:body>
 </html>

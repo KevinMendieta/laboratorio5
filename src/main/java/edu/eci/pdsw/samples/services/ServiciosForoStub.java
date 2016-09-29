@@ -89,6 +89,5 @@ public class ServiciosForoStub extends ServiciosForo{
             Logger.getLogger(ServiciosForoStub.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
         }
-        
     }
 }

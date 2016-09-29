@@ -45,7 +45,7 @@ public class EntradasForoTest {
         sfs = sfs.getInstance();
     }
     
-    @Test
+    /*@Test
     public void registroEntradaTestCE2(){
         try{
          sfs.registrarNuevaEntradaForo(new EntradaForo());
@@ -53,5 +53,5 @@ public class EntradasForoTest {
         }catch(ExcepcionServiciosForos e){
             assertTrue("No deberia registrar una entrada sin usuario asociado",true);
         }
-    }
+    }*/
 }

@@ -25,7 +25,6 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.sql.Date;
-import java.time.LocalDate;
 
 /**
  *
@@ -39,14 +38,18 @@ public class RegistroForosBean implements Serializable{
     String contenidoActual, emailActual, nombreActual;
     ServiciosForo sp=ServiciosForo.getInstance();
     
+    public void RegistroForosBean(){
+        idActual = 1;
+    }
+    
     public List<Comentario> getComentariosEntrada() throws ExcepcionServiciosForos{
         return new ArrayList<Comentario>(sp.consultarEntradaForo(idActual).getRespuestas());
     }
     
     public void addRespuesta()throws ExcepcionServiciosForos{
         EntradaForo entrada = sp.consultarEntradaForo(idActual);
-        Usuario usuario = sp.consultarUsuario(emailActual);
-        Date fecha = Date.valueOf(LocalDate.MAX);
+        Usuario usuario = new Usuario(emailActual,nombreActual);
+        Date fecha = new Date(java.util.Calendar.getInstance().getTime().getTime());
         entrada.getRespuestas().add(new Comentario(usuario,contenidoActual,fecha));
     }
 
@@ -65,5 +68,20 @@ public class RegistroForosBean implements Serializable{
     public void setNombreActual(String nombreActual) {
         this.nombreActual = nombreActual;
     }
-    
+
+    public int getIdActual() {
+        return idActual;
+    }
+
+    public String getContenidoActual() {
+        return contenidoActual;
+    }
+
+    public String getEmailActual() {
+        return emailActual;
+    }
+
+    public String getNombreActual() {
+        return nombreActual;
+    }
 }
