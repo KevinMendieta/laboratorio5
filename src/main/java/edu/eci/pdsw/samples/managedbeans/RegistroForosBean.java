@@ -17,20 +17,53 @@
 package edu.eci.pdsw.samples.managedbeans;
 
 
-import edu.eci.pdsw.samples.services.ServiciosForo;
+import edu.eci.pdsw.samples.entities.*;
+import edu.eci.pdsw.samples.services.*;
 import java.io.Serializable;
-import javax.annotation.ManagedBean;
-import javax.enterprise.context.SessionScoped;
+import java.util.ArrayList;
+import java.util.List;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  *
  * @author hcadavid
  */
-@ManagedBean
+@ManagedBean(name = "registroForoBean")
 @SessionScoped
 public class RegistroForosBean implements Serializable{
     
+    int idActual;
+    String contenidoActual, emailActual, nombreActual;
     ServiciosForo sp=ServiciosForo.getInstance();
     
+    public List<Comentario> getComentariosEntrada() throws ExcepcionServiciosForos{
+        return new ArrayList<Comentario>(sp.consultarEntradaForo(idActual).getRespuestas());
+    }
+    
+    public void addRespuesta()throws ExcepcionServiciosForos{
+        EntradaForo entrada = sp.consultarEntradaForo(idActual);
+        Usuario usuario = sp.consultarUsuario(emailActual);
+        Date fecha = Date.valueOf(LocalDate.MAX);
+        entrada.getRespuestas().add(new Comentario(usuario,contenidoActual,fecha));
+    }
+
+    public void setIdActual(int idActual) {
+        this.idActual = idActual;
+    }
+
+    public void setContenidoActual(String contenidoActual) {
+        this.contenidoActual = contenidoActual;
+    }
+
+    public void setEmailActual(String emailActual) {
+        this.emailActual = emailActual;
+    }
+
+    public void setNombreActual(String nombreActual) {
+        this.nombreActual = nombreActual;
+    }
     
 }
