@@ -46,26 +46,26 @@ public class ComentariosTest {
          nuevo = nuevo.getInstance();
     }
      @Test
-     public void registroPacineteTestC1(){
+     public void registroPacineteTestC1() throws ExcepcionServiciosForos  {
          Comentario com= new Comentario();
           try{
          nuevo.agregarRespuestaForo(0, com);
-         fail();
+         assertTrue("No ingresa excepcion",false);
         }catch(ExcepcionServiciosForos e){
             assertTrue("el comentario no tiene un usuario asociado",true);
         }
     }    
-  /*    @Test
-     public void registroPacineteTestC2(){
+    @Test
+     public void registroPacineteTestC2() throws ExcepcionServiciosForos{
          Usuario us=new Usuario();
          Comentario com= new Comentario();
          try{
          nuevo.consultarEntradaForo(-1);
-         fail();
+           assertTrue("No ingresa excepcion",false);
         }catch(ExcepcionServiciosForos e){
             assertTrue("El id asociado no corresponde a ningun usuario que realizo el comentario",true);
         }
-    } */
+    } 
 }
     
     

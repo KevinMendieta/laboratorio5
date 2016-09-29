@@ -61,7 +61,7 @@ public class EntradasForoTest {
     public void registroEntradaTestCE2(){
         try{
          sfs.registrarNuevaEntradaForo(new EntradaForo());
-         fail();
+         assertTrue("No ingresa excepcion",false);
         }catch(ExcepcionServiciosForos e){
             assertTrue("No deberia registrar una entrada sin usuario asociado",true);
         }
