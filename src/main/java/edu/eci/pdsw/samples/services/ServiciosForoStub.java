@@ -28,7 +28,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * 
+        
  * @author hcadavid
  */
 public class ServiciosForoStub extends ServiciosForo{

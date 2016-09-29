@@ -5,7 +5,55 @@
     <h:head></h:head>
 
     <h:body>
+    <h:form id="RegistroForo">
+        Foros Actuales
+        <p:dataTable var="foro" value="#{registroForoBean.sp}" selectionMode="single" selection="#{registroForoBean.selecc}" rowKey="#{foro.identificador}">
+         <p:column headerText="identificador">
+                        <h:outputText value="#{foro.identificador}" />
+                    </p:column>
+        <p:column headerText="autor">
+                        <h:outputText value="#{foro.autor.nombre}" />
+                    </p:column>
+        <p:column headerText="comentario">
+                        <h:outputText value="#{foro.comentario}" />
+                    </p:column>
+        <p:column headerText="Titulo">
+                        <h:outputText value="#{foro.titulo}" />
+        </p:column>
+         <p:column headerText="fechayHora">
+                        <h:outputText value="#{foro.fechayHora}" />
+        </p:column>
+   
+    </p:dataTable>
+         
+        <br> Digite el identificador del foro que deseas
+        <p:inputText value="#{registroForoBean.identif}"></p:inputText>
+
+        Digite el identificador del foro que deseas
+        <p:inputText value="#{registroForoBean.autorUsuario}"></p:inputText>
+
+        Digite el identificador del foro que deseas
+        <p:inputText value="#{registroForoBean.comenta}"></p:inputText>
         
-    </h:body>
+        Digite el identificador del foro que deseas
+        <p:inputText value="#{registroForoBean.tituloIni}"></p:inputText>
+
+        Digite el identificador del foro que deseas
+        <p:inputText value="#{registroForoBean.fecha_Hora}"></p:inputText>
+
+        <p:commandButton value="AgregarForo" update="RegistroForo" actionListener="#{registroForoBean.adicionar}"></p:commandButton>
+        </br>
+   
+        
+    </h:form>
+ </h:body>
 
 </html>
+<!--
+
+        <h:form>
+     <h3>Using Managed Bean</h3>
+   <h:commandButton action="#{navigationController.moveToPage1}"
+   value="Page1" />
+</h:form>
+-->
