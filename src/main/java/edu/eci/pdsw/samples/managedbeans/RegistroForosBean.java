@@ -34,47 +34,42 @@ import java.util.Set;
 @SessionScoped
 public class RegistroForosBean implements Serializable {
 
-    
-    int idActual;
-    String contenidoActual, emailActual, nombreActual;
-    ServiciosForo sp = ServiciosForo.getInstance();
+    private String contenidoActual, emailActual, nombreActual;
+    private ServiciosForo sp = ServiciosForo.getInstance();
     private EntradaForo selecc;
-    private int identif;
-    private Usuario autorUsuario; 
+    private String autorUsuario; 
     private String comenta;
     private String tituloIni;
-    private Date fecha_Hora;
+    
     
     public void adicionar() throws ExcepcionServiciosForos{
-        EntradaForo adicion =new  EntradaForo(identif,autorUsuario,comenta,tituloIni,fecha_Hora);
-        sp.registrarNuevaEntradaForo(adicion);   
+        Date fecha = new Date(java.util.Calendar.getInstance().getTime().getTime());
+        Usuario usuario = new Usuario(emailActual,autorUsuario);
+        EntradaForo adicion = new  EntradaForo(sp.consultarEntradasForo().size(),usuario,comenta,tituloIni,fecha);
+        sp.registrarNuevaEntradaForo(adicion);
     }
     
     public EntradaForo getSelecc() {
         return selecc;
     }
     
-     public EntradaForo setSelecc() {
-        return selecc;
+    public boolean puedeMostrar(){
+        return selecc!=null;
     }
-
-    public void RegistroForosBean() {
-        idActual = 1;
+    
+     public void setSelecc(EntradaForo selecc) {
+        this.selecc = selecc;
     }
-
-    public List<Comentario> getComentariosEntrada() throws ExcepcionServiciosForos {
-        return new ArrayList<Comentario>(sp.consultarEntradaForo(idActual).getRespuestas());
+    
+    public List<Comentario> getComentariosEntrada() throws ExcepcionServiciosForos {        
+        return new ArrayList<Comentario>(sp.consultarEntradaForo(selecc.getIdentificador()).getRespuestas());
     }
 
     public void addRespuesta() throws ExcepcionServiciosForos {
-        EntradaForo entrada = sp.consultarEntradaForo(idActual);
+        EntradaForo entrada = sp.consultarEntradaForo(selecc.getIdentificador());
         Usuario usuario = new Usuario(emailActual, nombreActual);
         Date fecha = new Date(java.util.Calendar.getInstance().getTime().getTime());
         entrada.getRespuestas().add(new Comentario(usuario, contenidoActual, fecha));
-    }
-
-    public void setIdActual(int idActual) {
-        this.idActual = idActual;
     }
 
     public void setContenidoActual(String contenidoActual) {
@@ -89,9 +84,7 @@ public class RegistroForosBean implements Serializable {
         this.nombreActual = nombreActual;
     }
 
-    public int getIdActual() {
-        return idActual;
-    }
+    
 
     public String getContenidoActual() {
         return contenidoActual;
@@ -106,17 +99,12 @@ public class RegistroForosBean implements Serializable {
     }
 
     //================================================
-    public void setSp(ServiciosForo sp) {
-        this.sp = sp;
-    }
-
-    public List<EntradaForo> getSp() throws ExcepcionServiciosForos {
+   
+    public List<EntradaForo> getEntradasForo() throws ExcepcionServiciosForos {
         return sp.consultarEntradasForo();
     }
-
-   
-
-    public Usuario getAutorUsuario() {
+    
+    public String getAutorUsuario() {
         return autorUsuario;
     }
 
@@ -129,13 +117,9 @@ public class RegistroForosBean implements Serializable {
         return tituloIni;
     }
 
-    public Date getFecha_Hora() {
-        return fecha_Hora;
-    }
-
     
 
-    public void setAutorUsuario(Usuario autorUsuario) {
+    public void setAutorUsuario(String autorUsuario) {
         this.autorUsuario = autorUsuario;
     }
 
@@ -143,24 +127,7 @@ public class RegistroForosBean implements Serializable {
         this.comenta = comenta;
     }
 
-    
-
     public void setTituloIni(String tituloIni) {
         this.tituloIni = tituloIni;
     }
-
-    public void setFecha_Hora(Date fecha_Hora) {
-        this.fecha_Hora = fecha_Hora;
-    }
-
-    public int getIdentif() {
-        return identif;
-    }
-
-    public void setIdentif(int identif) {
-        this.identif = identif;
-    }
-    
-    
-
 }

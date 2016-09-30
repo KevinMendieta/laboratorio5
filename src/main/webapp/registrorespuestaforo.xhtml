@@ -4,10 +4,10 @@
       xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head></h:head>
     <h:body>
-        <h:form id="form">
+        <h:form id="form" rendered="#{registroForoBean.puedeMostrar}">
             <p:dataTable id="tablaComentarios" var="comentarios" value="#{registroForoBean.comentariosEntrada}">                
                 <f:facet name="header">
-                    Hi!
+                    #{registroForoBean.selecc.titulo}
                 </f:facet>
                 <p:column headerText="Autores">
                     <h:outputText value="#{comentarios.autor.nombre}" />
@@ -20,6 +20,7 @@
                 </p:column>
                 <f:facet name="footer">
                     <p:commandButton update=":form" value="Agregar un Comentario" oncomplete="PF('campoEntradaDatos').show()" />
+                    <p:commandButton update=":form" value="Regresar" action="registroentradaforo" immediate="true"/>
                 </f:facet>
             </p:dataTable>
             <p:dialog header="Datos" widgetVar="campoEntradaDatos" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="500">
@@ -37,8 +38,7 @@
                         <h:inputText id="contenido" value="#{registroForoBean.contenidoActual}" required="true"/>
                         
                     </h:panelGrid>
-                    <p:commandButton update=":form" value="Agregar comentario" actionListener="#{registroForoBean.addRespuesta()}"/>
-                    <p:commandButton update=":form" value="Regresar"/>
+                    <p:commandButton update=":form" value="Agregar comentario" actionListener="#{registroForoBean.addRespuesta()}"/>                    
                 </p:outputPanel>
             </p:dialog>
         </h:form>
