@@ -82,9 +82,7 @@ public class RegistroForosBean implements Serializable {
 
     public void setNombreActual(String nombreActual) {
         this.nombreActual = nombreActual;
-    }
-
-    
+    }    
 
     public String getContenidoActual() {
         return contenidoActual;

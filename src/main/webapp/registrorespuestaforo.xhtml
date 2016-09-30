@@ -4,7 +4,7 @@
       xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head></h:head>
     <h:body>
-        <h:form id="form" rendered="#{registroForoBean.puedeMostrar}">
+        <h:form id="form" rendered="#{registroForoBean.puedeMostrar()}">
             <p:dataTable id="tablaComentarios" var="comentarios" value="#{registroForoBean.comentariosEntrada}">                
                 <f:facet name="header">
                     #{registroForoBean.selecc.titulo}
@@ -42,5 +42,7 @@
                 </p:outputPanel>
             </p:dialog>
         </h:form>
+        
+        <h:form id="form2" rendered="#{not registroForoBean.puedeMostrar()}">hi</h:form>
     </h:body>
 </html>
